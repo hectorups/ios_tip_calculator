@@ -13,6 +13,7 @@
 		950C3C40199D8A2A003F48FD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 950C3C3F199D8A2A003F48FD /* Images.xcassets */; };
 		950C3C4C199D8A2B003F48FD /* TipCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C3C4B199D8A2B003F48FD /* TipCalculatorTests.swift */; };
 		952A6EDC199DC74900A89FA7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6EDB199DC74900A89FA7 /* SettingsViewController.swift */; };
+		952A6EE0199DD94500A89FA7 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6EDF199DD94500A89FA7 /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		950C3C4A199D8A2B003F48FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		950C3C4B199D8A2B003F48FD /* TipCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCalculatorTests.swift; sourceTree = "<group>"; };
 		952A6EDB199DC74900A89FA7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		952A6EDF199DD94500A89FA7 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				950C3C3F199D8A2A003F48FD /* Images.xcassets */,
 				950C3C36199D8A2A003F48FD /* Supporting Files */,
 				952A6EDB199DC74900A89FA7 /* SettingsViewController.swift */,
+				952A6EDF199DD94500A89FA7 /* Currency.swift */,
 			);
 			path = TipCalculator;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				952A6EE0199DD94500A89FA7 /* Currency.swift in Sources */,
 				950C3C3B199D8A2A003F48FD /* ViewController.swift in Sources */,
 				950C3C39199D8A2A003F48FD /* AppDelegate.swift in Sources */,
 				952A6EDC199DC74900A89FA7 /* SettingsViewController.swift in Sources */,
