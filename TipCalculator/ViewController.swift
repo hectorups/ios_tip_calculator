@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     private let tipPercentages = [0.18, 0.2, 0.22]
     
     private var currency = "$"
+    
+    private var defaults = NSUserDefaults.standardUserDefaults()
                             
     @IBOutlet var billField: UITextField!
     
@@ -26,13 +28,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        var savedValue : String? = defaults.objectForKey("value") as? String
+        var savedValueAt : NSDate? = defaults.objectForKey("value_date") as? NSDate
+        
+        var earlier = NSDate.date().dateByAddingTimeInterval(-5.minutes)
+        if (savedValue? != nil && savedValueAt?.compare(earlier).toRaw() > 0) {
+            billField.text = savedValue!
+        }
+        
+        billField.becomeFirstResponder()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         println("view will appear")
         
-        var defaults = NSUserDefaults.standardUserDefaults()
         var currencyPosition = defaults.integerForKey("currency")
         
         if var convertedRank = Currency.fromRaw(currencyPosition){
@@ -44,17 +54,17 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        println("view did appear")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        println("view will disappear")
+        
+        defaults.setObject(billField.text, forKey: "value")
+        defaults.setObject(NSDate.date(), forKey: "value_date")
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        println("view did disappear")
     }
 
     override func didReceiveMemoryWarning() {

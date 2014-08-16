@@ -14,6 +14,7 @@
 		950C3C4C199D8A2B003F48FD /* TipCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C3C4B199D8A2B003F48FD /* TipCalculatorTests.swift */; };
 		952A6EDC199DC74900A89FA7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6EDB199DC74900A89FA7 /* SettingsViewController.swift */; };
 		952A6EE0199DD94500A89FA7 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6EDF199DD94500A89FA7 /* Currency.swift */; };
+		954F55FC199F24B600F59048 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F55FB199F24B600F59048 /* Int.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		950C3C4B199D8A2B003F48FD /* TipCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCalculatorTests.swift; sourceTree = "<group>"; };
 		952A6EDB199DC74900A89FA7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		952A6EDF199DD94500A89FA7 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		954F55FB199F24B600F59048 /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		950C3C35199D8A2A003F48FD /* TipCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				954F55FA199F248900F59048 /* extensions */,
 				950C3C38199D8A2A003F48FD /* AppDelegate.swift */,
 				950C3C3A199D8A2A003F48FD /* ViewController.swift */,
 				950C3C3C199D8A2A003F48FD /* Main.storyboard */,
@@ -113,6 +116,14 @@
 				950C3C4A199D8A2B003F48FD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		954F55FA199F248900F59048 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				954F55FB199F24B600F59048 /* Int.swift */,
+			);
+			name = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				952A6EE0199DD94500A89FA7 /* Currency.swift in Sources */,
+				954F55FC199F24B600F59048 /* Int.swift in Sources */,
 				950C3C3B199D8A2A003F48FD /* ViewController.swift in Sources */,
 				950C3C39199D8A2A003F48FD /* AppDelegate.swift in Sources */,
 				952A6EDC199DC74900A89FA7 /* SettingsViewController.swift in Sources */,
