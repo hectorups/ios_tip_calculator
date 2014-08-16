@@ -10,11 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let valueDefault = "value"
+    let valueDateDefault = "value_date"
+    let percentageDefault = "percentage"
+    
     private let tipPercentages = [0.18, 0.2, 0.22]
     
     private var currency = "$"
     
     private var defaults = NSUserDefaults.standardUserDefaults()
+    
+    @IBOutlet weak var resultsView: UIView!
                             
     @IBOutlet var billField: UITextField!
     
@@ -28,13 +34,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var savedValue : String? = defaults.objectForKey("value") as? String
-        var savedValueAt : NSDate? = defaults.objectForKey("value_date") as? NSDate
+        var savedValue : String? = defaults.objectForKey(valueDefault) as? String
+        var savedValueAt : NSDate? = defaults.objectForKey(valueDateDefault) as? NSDate
+        var savedPercentate = defaults.integerForKey(percentageDefault)
         
         var earlier = NSDate.date().dateByAddingTimeInterval(-5.minutes)
         if (savedValue? != nil && savedValueAt?.compare(earlier).toRaw() > 0) {
             billField.text = savedValue!
         }
+        
+        tipControl.selectedSegmentIndex = savedPercentate
         
         billField.becomeFirstResponder()
     }
@@ -59,8 +68,9 @@ class ViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        defaults.setObject(billField.text, forKey: "value")
-        defaults.setObject(NSDate.date(), forKey: "value_date")
+        defaults.setObject(billField.text, forKey: valueDefault)
+        defaults.setObject(NSDate.date(), forKey: valueDateDefault)
+        defaults.setInteger(tipControl.selectedSegmentIndex, forKey: percentageDefault)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -88,6 +98,13 @@ class ViewController: UIViewController {
         var tip = billAmount * tipPercentage
         var total = billAmount + tip
         
+        if (billAmount > 0) {
+            showResults(1.0, duration: 2.0)
+        } else {
+            showResults(0.0, duration: 0.0)
+        }
+        
+        
         updateLabel(tipLabel, value: tip)
         updateLabel(totalLabel, value: total)
     }
@@ -99,6 +116,21 @@ class ViewController: UIViewController {
         
         label.text = nf.stringFromNumber(value)
     }
-
+    
+    private func showResults(alpha: CGFloat, duration: Double) {
+        UIView.animateWithDuration(duration, animations: {
+            for subView : AnyObject in self.resultsView.subviews {
+                var sv : UIView = subView as UIView
+                sv.alpha = alpha
+            }
+        })
+        
+        UIView.animateWithDuration(2.0, animations: {
+            var scale : CGFloat = alpha == 1 ? 1.0 : 1.75
+            self.billField.transform = CGAffineTransformMakeScale(scale, scale)
+        })
+        
+        
+    }
 }
 
