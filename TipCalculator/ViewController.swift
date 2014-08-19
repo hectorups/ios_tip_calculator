@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     let valueDateDefault = "value_date"
     let percentageDefault = "percentage"
     
-    private let tipPercentages = [0.18, 0.2, 0.22]
+    private var tipPercentages = [18, 20, 22]
     
     private var currency = "$"
     
@@ -36,14 +36,11 @@ class ViewController: UIViewController {
         
         var savedValue : String? = defaults.objectForKey(valueDefault) as? String
         var savedValueAt : NSDate? = defaults.objectForKey(valueDateDefault) as? NSDate
-        var savedPercentate = defaults.integerForKey(percentageDefault)
         
         var earlier = NSDate.date().dateByAddingTimeInterval(-5.minutes)
         if (savedValue? != nil && savedValueAt?.compare(earlier).toRaw() > 0) {
             billField.text = savedValue!
         }
-        
-        tipControl.selectedSegmentIndex = savedPercentate
         
         billField.becomeFirstResponder()
     }
@@ -57,6 +54,24 @@ class ViewController: UIViewController {
         if var convertedRank = Currency.fromRaw(currencyPosition){
             currency = convertedRank.shortVersion()
         }
+        
+        var savedPercentate = defaults.integerForKey(percentageDefault)
+        
+        if defaults.integerForKey("default_low_percentage") != 0 {
+            tipPercentages[0] = defaults.integerForKey("default_low_percentage")
+        }
+        if defaults.integerForKey("default_medium_percentage") != 0 {
+            tipPercentages[1] = defaults.integerForKey("default_medium_percentage")
+        }
+        if defaults.integerForKey("default_high_percentage") != 0 {
+            tipPercentages[2] = defaults.integerForKey("default_high_percentage")
+        }
+        
+        tipControl.removeAllSegments()
+        for (index, percentage) in enumerate(tipPercentages) {
+            tipControl.insertSegmentWithTitle("\(percentage)%", atIndex: index, animated: true)
+        }
+        tipControl.selectedSegmentIndex = savedPercentate
         
         updateAmounts()
     }
@@ -95,7 +110,7 @@ class ViewController: UIViewController {
         
         var billAbountString = NSString(string: billField.text)
         var billAmount = billAbountString.doubleValue
-        var tip = billAmount * tipPercentage
+        var tip = billAmount * Double(tipPercentage) / 100
         var total = billAmount + tip
         
         if (billAmount > 0) {
