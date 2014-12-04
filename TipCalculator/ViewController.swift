@@ -37,8 +37,8 @@ class ViewController: UIViewController {
         var savedValue : String? = defaults.objectForKey(valueDefault) as? String
         var savedValueAt : NSDate? = defaults.objectForKey(valueDateDefault) as? NSDate
         
-        var earlier = NSDate.date().dateByAddingTimeInterval(-5.minutes)
-        if (savedValue? != nil && savedValueAt?.compare(earlier).toRaw() > 0) {
+        var earlier = NSDate().dateByAddingTimeInterval(-5.minutes)
+        if (savedValue? != nil && savedValueAt?.compare(earlier).rawValue > 0) {
             billField.text = savedValue!
         }
         
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         
         var currencyPosition = defaults.integerForKey("currency")
         
-        if var convertedRank = Currency.fromRaw(currencyPosition){
+        if var convertedRank = Currency(rawValue: currencyPosition){
             currency = convertedRank.shortVersion()
         }
         
@@ -83,8 +83,10 @@ class ViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        
+        
         defaults.setObject(billField.text, forKey: valueDefault)
-        defaults.setObject(NSDate.date(), forKey: valueDateDefault)
+        defaults.setObject(NSDate(), forKey: valueDateDefault)
         defaults.setInteger(tipControl.selectedSegmentIndex, forKey: percentageDefault)
     }
     
