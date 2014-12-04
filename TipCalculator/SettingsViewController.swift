@@ -96,12 +96,14 @@ class SettingsViewController: UIViewController {
     
 }
 
+
 extension SettingsViewController: UIPickerViewDataSource {
-    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int {
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return Currency.allValues.count
     }
 }
@@ -111,7 +113,7 @@ extension SettingsViewController: UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
         var currency : String
         currency = "$"
-        if var convertedRank = Currency.fromRaw(row){
+        if var convertedRank = Currency(rawValue: row){
             currency = convertedRank.longVersion()
         }
         
